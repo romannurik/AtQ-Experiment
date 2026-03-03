@@ -150,7 +150,7 @@ export function Header({ children }: PropsWithChildren) {
               <Flex gap="2">
                 <TextField.Root
                   readOnly
-                  value={"go/@q/" + docId}
+                  value={window.location.href.replace(/https?:\/\//, "")}
                   style={{ flex: "1 1 0", userSelect: "all" }}
                   onFocus={(ev) => ev.currentTarget.select()}
                 >
@@ -160,7 +160,7 @@ export function Header({ children }: PropsWithChildren) {
                 </TextField.Root>
                 <Button
                   onClick={() => {
-                    navigator.clipboard.writeText("go/@q/" + docId);
+                    navigator.clipboard.writeText(window.location.href);
                     toast("Copied!", { status: "success" });
                   }}
                 >

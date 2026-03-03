@@ -54,7 +54,7 @@ const onMessage = chatHandler((event) => {
     `Your collaborative space ✨*${ellipsize(cleanedTitle, 30)}*✨`,
     `as requested by <${message.sender.name}>`,
     `is ready: `,
-    `<https://goto.google.com/@q/${id}|go/@q/${id}>`,
+    `<https://link-to-your-hosted-app.com/${id}|link-to-your-hosted-app.com/${id}>`,
   ].join(' '));
 });
 
