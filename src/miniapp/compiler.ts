@@ -41,6 +41,14 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   return assembleHtml({ jsBundle, npmExternals });
 }
 
+function importFor(pkg: string) {
+  if (pkg === "lucide-react") {
+    // lots of breakages with lucide 1.0
+    pkg = "lucide-react@0.577.0";
+  }
+  return `https://esm.sh/${pkg}`;
+}
+
 function assembleHtml({
   jsBundle,
   npmExternals,
@@ -63,10 +71,7 @@ function assembleHtml({
       "imports": ${JSON.stringify(
         {
           ...Object.fromEntries(
-            npmExternals?.map((pkg) => [
-              `npm:${pkg}`,
-              `https://esm.sh/${pkg}`,
-            ]) || [],
+            npmExternals?.map((pkg) => [`npm:${pkg}`, importFor(pkg)]) || [],
           ),
           react: `https://esm.sh/react@${REACT_VERSION}`,
           "react/jsx-runtime": `https://esm.sh/react@${REACT_VERSION}/jsx-runtime`,
